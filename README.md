@@ -292,7 +292,7 @@ setClubSignState(true);
 
 ## 📄 License
 
-This project is proprietary / internal (update if open-source).
+Apache License 2.0
 
 ---
 
