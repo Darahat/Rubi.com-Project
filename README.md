@@ -1,174 +1,305 @@
-# Rubi Client UI (Vue 3 + Vite + Vuetify)
+# Rubi Client UI
 
-A component-driven Vue 3 front-end for the Rubi experience. The repo emphasizes reusable pieces (layouts, composables, atoms/molecules/organisms) and a clean separation of routing, state, plugins, and styles.
+**Modern Vue 3 Frontend • Component-Driven • Scalable Architecture**
 
-## Tech stack
-- Vue 3 + Vite 3 (ESM, fast dev server, HMR)
-- Vuetify 3 + Material Design icon fonts
-- Vue Router 4 (history mode)
-- Pinia 2 for state
-- SCSS theming + custom fonts via WebFontLoader
-- Utilities: Swiper, Bootstrap 5, v-mask, webfontloader
+Rubi Client UI is a **Vue 3 + Vite + Vuetify** front-end application designed for scalability, reusability, and long-term maintainability.  
+The project follows a **component-driven architecture** with clear separation of concerns across layouts, views, state management, plugins, and styles.
 
-## Prerequisites
-- Node.js 16+ (Vite 3 requires 14.18+, recommend 16+)
-- npm 8+ (comes with Node)
+This repository is ideal for teams building **production-ready dashboards, marketing pages, and user-facing platforms** with Vue 3.
 
-## Quick start
-1) Install dependencies: 
-pm install
-2) Run dev server: 
-pm run dev (defaults to http://localhost:3000)
-3) Build for production: 
-pm run build
-4) Preview production build locally: 
-pm run preview
-5) Lint (auto-fix): 
-pm run lint
+---
 
-## Project layout (high level)
-- [src/main.js](src/main.js)  entry; mounts Vue app, registers plugins, global styles
-- [src/plugins](src/plugins)  plugin registration; Vuetify, router, Pinia, fonts
-- [src/router/index.js](src/router/index.js)  route table (uses history mode)
-- [src/store](src/store)  Pinia root and stores (e.g., app store)
-- [src/layouts/default](src/layouts/default)  default shell (AppBar, Footer, View)
-- [src/views](src/views)  page-level views used by routes
-- [src/components](src/components)  reusable UI (atoms/molecules/organisms)
-- [src/composables](src/composables)  reusable logic helpers
-- [src/styles](src/styles)  global SCSS (theme variables, typography, home/text)
-- [public](public)  static assets served at root (e.g., logos)
+## ✨ Key Highlights
 
-Vite alias @ points to src/ (see [vite.config.js](vite.config.js)).
+- ⚡ Lightning-fast dev experience with **Vite**
+- 🧱 Component-driven structure (Atoms / Molecules / Organisms)
+- 🎨 **Vuetify 3** with SCSS-based theming
+- 🧭 **Vue Router 4** with layout-based routing
+- 🗂️ **Pinia** for predictable global state
+- ♻️ Reusable composables for shared logic
+- 🧩 Clean plugin registration system
+- 🚀 Optimized for scalability and team collaboration
 
-## App bootstrap
-1) createApp(App) in [src/main.js](src/main.js)
-2) Global SCSS imports (settings.scss, main.scss, home.scss, 	ext.scss)
-3) egisterPlugins(app) from [src/plugins/index.js](src/plugins/index.js) loads fonts, Vuetify instance, router, and Pinia
-4) Mounts to #app
+---
 
-## Routing
-- Defined in [src/router/index.js](src/router/index.js)
-- Uses createWebHistory(process.env.BASE_URL)
-- Default layout at path / wraps children; each child lazy-loads its view
-- Example routes: land-page, product-registration, club-dashboard, point-history, career-page, bout-page, 
-ews-page, 
-ews-details, promises, policy, innovationQualityPage, commitmentPage, grupoRubiPage, ll_components
+## 🛠 Tech Stack
 
-### Add a new page
-1) Create a view under src/views, e.g., MyFeature.vue
-2) Add a child route under the root route in [src/router/index.js](src/router/index.js):
-`js
+| Category  | Tools                                      |
+| --------- | ------------------------------------------ |
+| Framework | Vue 3                                      |
+| Bundler   | Vite                                       |
+| UI        | Vuetify 3, Material Design Icons           |
+| Routing   | Vue Router 4 (History Mode)                |
+| State     | Pinia                                      |
+| Styling   | SCSS, custom fonts                         |
+| Utilities | Swiper, Bootstrap 5, v-mask, WebFontLoader |
+
+---
+
+## 📦 Prerequisites
+
+Make sure you have the following installed:
+
+- **Node.js** ≥ 16
+- **npm** ≥ 8
+
+Check versions:
+
+```bash
+node -v
+npm -v
+```
+
+````
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Install dependencies
+
+```bash
+npm install
+```
+
+### 2️⃣ Run development server
+
+```bash
+npm run dev
+```
+
+App runs at:
+👉 **[http://localhost:3000](http://localhost:3000)**
+
+### 3️⃣ Build for production
+
+```bash
+npm run build
+```
+
+### 4️⃣ Preview production build
+
+```bash
+npm run preview
+```
+
+### 5️⃣ Lint & auto-fix
+
+```bash
+npm run lint
+```
+
+---
+
+## 🗂 Project Structure (High Level)
+
+```
+src/
+├── main.js                 # App entry point
+├── plugins/                # Vuetify, Router, Pinia, Fonts
+├── router/                 # Route definitions
+├── store/                  # Pinia stores
+├── layouts/                # App layouts (Default, etc.)
+├── views/                  # Route-level pages
+├── components/             # Reusable UI components
+├── composables/            # Shared logic hooks
+├── styles/                 # Global SCSS & themes
+├── assets/                 # App assets
+public/                     # Static files
+```
+
+> 🔹 `@` alias points to `src/` (configured in `vite.config.js`)
+
+---
+
+## 🧩 App Bootstrap Flow
+
+1. `createApp(App)` → `src/main.js`
+2. Load global SCSS (theme, typography)
+3. Register plugins via `registerPlugins(app)`
+4. Mount app to `#app`
+
+---
+
+## 🧭 Routing System
+
+- Centralized in `src/router/index.js`
+- Uses `createWebHistory`
+- Default layout wraps all child routes
+- Pages are **lazy-loaded** for performance
+
+### Example Route
+
+```js
 {
   path: 'my-feature',
   name: 'my-feature',
   component: () => import('@/views/MyFeature.vue'),
 }
-`
-3) Navigate in templates with <router-link :to="{ name: 'my-feature' }"> or programmatically 	his..push({ name: 'my-feature' })
+```
 
-## Layouts
-- Default shell lives in [src/layouts/default/Default.vue](src/layouts/default/Default.vue) and wraps every routed page
-- App bar: [src/layouts/default/AppBar.vue](src/layouts/default/AppBar.vue) (responsive header, scroll hide/show, navigation buttons)
-- Footer: [src/layouts/default/Footer.vue](src/layouts/default/Footer.vue) (desktop/mobile variants)
-- Routed content placeholder: [src/layouts/default/View.vue](src/layouts/default/View.vue) uses <router-view />
+### Navigation
 
-### Create another layout
-1) Add a new layout component under src/layouts/<name>/YourLayout.vue
-2) Point a routes component to that layout and add its children pages
-3) Inside the layout, place <router-view /> where child pages should render
+```vue
+<router-link :to="{ name: 'my-feature' }" />
+```
 
-## State management (Pinia)
-- Pinia instance exported from [src/store/index.js](src/store/index.js) and registered in plugins
-- Example store scaffold in [src/store/app.js](src/store/app.js)
+---
 
-### Create/use a store
-`js
-// src/store/user.js
-import { defineStore } from 'pinia'
+## 🧱 Layout System
 
-export const useUserStore = defineStore('user', {
-  state: () => ({ profile: null }),
+**Default Layout**
+
+- Header (AppBar)
+- Footer
+- `<router-view />` for pages
+
+Location:
+
+```
+src/layouts/default/
+├── Default.vue
+├── AppBar.vue
+├── Footer.vue
+└── View.vue
+```
+
+### Creating a New Layout
+
+1. Create a layout component under `src/layouts/`
+2. Assign it to a route
+3. Place `<router-view />` inside the layout
+
+---
+
+## 🗂 State Management (Pinia)
+
+- Global Pinia instance registered via plugins
+- Stores live in `src/store/`
+
+### Example Store
+
+```js
+import { defineStore } from "pinia";
+
+export const useUserStore = defineStore("user", {
+  state: () => ({
+    profile: null,
+  }),
   actions: {
-    setProfile(profile) { this.profile = profile }
+    setProfile(data) {
+      this.profile = data;
+    },
   },
-})
-`
-Use in components:
-`js
-import { useUserStore } from '@/store/user'
-const user = useUserStore()
-user.setProfile(data)
-`
+});
+```
 
-## Plugins
-- Registered in one place via [src/plugins/index.js](src/plugins/index.js)
-- Vuetify instance defined in [src/plugins/vuetify.js](src/plugins/vuetify.js) with light theme and custom colors (primary, secondary, ubiColor)
-- Fonts loaded through webfontloader
+Usage:
 
-### Add another plugin
-1) Create or install the plugin (e.g., 
-pm install v-mask)
-2) Import and .use() it inside egisterPlugins:
-`js
-import VueMask from 'v-mask'
+```js
+const userStore = useUserStore();
+userStore.setProfile(profile);
+```
 
-export function registerPlugins(app) {
-  loadFonts()
-  app
-    .use(vuetify)
-    .use(router)
-    .use(pinia)
-    .use(VueMask)
-}
-`
+---
 
-## Composables (reusable logic)
-- use-clubrubi-modal.js: exposes openClubSignModal ref and setClubSignState
-- use-header-script.js: dynamically injects/removes external scripts when a component mounts/unmounts (use setScript({ url, async }) before mount)
-- use-title-size.js: maps size keywords (ig|medium|small) to pixel strings
-- use-red-or-black.js: (similar size utility; currently returns title size helper)
+## 🔌 Plugin System
 
-### Using a composable
-`js
-import useClubrubiModal from '@/composables/use-clubrubi-modal'
+All plugins are registered in **one place**:
 
-const { openClubSignModal, setClubSignState } = useClubrubiModal()
-setClubSignState(true)
-`
+```
+src/plugins/index.js
+```
 
-## Components & styles
-- Reusable components organized by domain: components/about, careers, club, General, Organisms, etc.
-- Global styles in src/styles (SCSS); Vuetify pulls theme config from settings.scss
-- Material icons and MDI fonts are preloaded in [src/main.js](src/main.js) and [src/plugins/vuetify.js](src/plugins/vuetify.js)
+Includes:
 
-## Assets
-- Public assets served from public/ (e.g., /logo2.svg)
-- Scoped assets inside src/assets can be imported via @/assets/...
+- Vuetify
+- Vue Router
+- Pinia
+- WebFontLoader
 
-## Installing extra packages
-`ash
-npm install <package>
-`
-- For UI libs or plugins, import and register in egisterPlugins
-- For utilities, import directly where needed or wrap in a composable for reuse
+### Adding a New Plugin
 
-## User flow (baseline)
-1) App loads Default layout  header/footer render once
-2) Router swaps views inside <router-view /> as users navigate
-3) Shared state lives in Pinia stores; components/composables pull what they need
-4) Global theming and icons come from Vuetify + SCSS settings
+```bash
+npm install v-mask
+```
 
-## Conventions & tips
-- Prefer composables for shared logic and Pinia stores for cross-page state
-- Keep views thin; delegate UI to components in components/
-- Use the @ alias for clean imports (import Card from '@/components/General/ClipBoxCard.vue')
-- Run 
-pm run lint before committing
-- Keep new layouts minimal; route children render inside <router-view />
+```js
+import VueMask from "v-mask";
 
-## Troubleshooting
-- Dev server port in [vite.config.js](vite.config.js) is 3000; change server.port if needed
-- If icons are missing, ensure @mdi/font and material-design-icons-iconfont assets are installed (run 
-pm install)
-- When adding a new font, extend loadFonts in src/plugins/webfontloader.js
+app.use(VueMask);
+```
 
+---
+
+## 🔁 Composables (Reusable Logic)
+
+Located in:
+
+```
+src/composables/
+```
+
+Examples:
+
+- Modal state handling
+- Dynamic script injection
+- UI helpers (size, color mapping)
+
+### Usage Example
+
+```js
+import useClubrubiModal from "@/composables/use-clubrubi-modal";
+
+const { openClubSignModal, setClubSignState } = useClubrubiModal();
+setClubSignState(true);
+```
+
+---
+
+## 🎨 Styling & Assets
+
+- Global SCSS lives in `src/styles/`
+- Vuetify theme variables defined in `settings.scss`
+- Icons loaded via Material Design Icons
+- Public assets served from `/public`
+
+---
+
+## 📌 Best Practices
+
+- Keep **views thin**
+- Move logic to **composables**
+- Share state via **Pinia**
+- Reuse UI components aggressively
+- Use `@` alias for clean imports
+- Run lint before commits
+
+---
+
+## 🧪 Troubleshooting
+
+| Issue             | Fix                                      |
+| ----------------- | ---------------------------------------- |
+| App not loading   | Check Node version                       |
+| Icons missing     | Run `npm install`                        |
+| Port conflict     | Change `server.port` in `vite.config.js` |
+| Fonts not loading | Update WebFontLoader config              |
+
+---
+
+## 📄 License
+
+This project is proprietary / internal (update if open-source).
+
+---
+
+## 🤝 Contributing
+
+Feel free to submit issues or improvements.
+Clean code, meaningful commits, and consistency are expected.
+
+```
+
+```
+````
