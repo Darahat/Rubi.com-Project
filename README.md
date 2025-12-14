@@ -1,3 +1,5 @@
+![Project Preview](readme-banner.png)
+
 # Rubi Client UI
 
 **Modern Vue 3 Frontend • Component-Driven • Scalable Architecture**
